@@ -63,6 +63,17 @@ describe(Stylist) do
     end
   end
 
+  describe('#update') do
+    it('updates a given instance of the Stylist class') do
+      stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
+      stylist.save()
+      stylist2 = Stylist.new({:id => nil, :name => 'Sam Harris'})
+      stylist2.save()
+      stylist2.update({:name => "Ira Glass"})
+      expect(stylist2.name()).to(eq("Ira Glass"))
+    end
+  end
+
   # describe(:clients) do
   #   it('displays all client names of a given instance of the Stylist class') do
   #     Coming soon!
