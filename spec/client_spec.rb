@@ -39,7 +39,7 @@ describe(Client) do
   end
 
   describe('.find') do
-    it('finds an instance of the Stylist class by the id') do
+    it('finds an instance of the Client class by the id') do
       client = Client.new({:id => nil, :name => 'Austin Kincaid', :stylist_id => 1})
       client.save()
       client2 = Client.new({:id => nil, :name => 'Sam Harris', :stylist_id => 2})
@@ -50,19 +50,19 @@ describe(Client) do
     end
   end
 
-  # describe('#delete') do
-  #   it('deletes a specific instance of the Stylist class') do
-  #     stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
-  #     stylist.save()
-  #     stylist2 = Stylist.new({:id => nil, :name => 'Sam Harris'})
-  #     stylist2.save()
-  #     stylist3 = Stylist.new({:id => nil, :name => 'Joshua Oppenheimer'})
-  #     stylist3.save()
-  #     stylist.delete()
-  #     expect(Stylist.all()).to(eq([stylist2, stylist3]))
-  #   end
-  # end
-  #
+  describe('#delete') do
+    it('deletes a specific instance of the Client class') do
+      client = Client.new({:id => nil, :name => 'Austin Kincaid', :stylist_id => 1})
+      client.save()
+      client2 = Client.new({:id => nil, :name => 'Sam Harris', :stylist_id => 2})
+      client2.save()
+      client3 = Client.new({:id => nil, :name => 'Joshua Oppenheimer', :stylist_id => 1})
+      client3.save()
+      client3.delete()
+      expect(Client.all()).to(eq([client, client2]))
+    end
+  end
+
   # describe('#update') do
   #   it('updates a given instance of the Stylist class') do
   #     stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
