@@ -49,4 +49,23 @@ describe(Stylist) do
       expect(Stylist.find(stylist2.id())).to(eq(stylist2))
     end
   end
+
+  describe('#delete') do
+    it('deletes a specific instance of the Stylist class') do
+      stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
+      stylist.save()
+      stylist2 = Stylist.new({:id => nil, :name => 'Sam Harris'})
+      stylist2.save()
+      stylist3 = Stylist.new({:id => nil, :name => 'Joshua Oppenheimer'})
+      stylist3.save()
+      stylist.delete()
+      expect(Stylist.all()).to(eq([stylist2, stylist3]))
+    end
+  end
+
+  # describe(:clients) do
+  #   it('displays all client names of a given instance of the Stylist class') do
+  #     Coming soon!
+  #   end
+  # end
 end
