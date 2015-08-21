@@ -5,7 +5,7 @@
   <div>
     <ul>
       <% @stylists.each do |stylist| %>
-        <li><a href="/stylists/<%= stylist.id %>"><%= stylist.name %></a></li>
+        <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
       <% end %>
     </ul>
   </div>
