@@ -61,6 +61,21 @@ describe(Stylist) do
       stylist.delete()
       expect(Stylist.all()).to(eq([stylist2, stylist3]))
     end
+
+    it('deletes clients of a deleted instance of Stylist') do
+      stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
+      stylist.save()
+      client = Client.new({:id => nil, :name => 'Sam Harris', :stylist_id => stylist.id()})
+      client.save()
+      client = Client.new({:id => nil, :name => 'Sam Harris', :stylist_id => stylist.id()})
+      client.save()
+      client = Client.new({:id => nil, :name => 'Sam Harris', :stylist_id => 1})
+      client.save()
+      stylist.delete()
+      stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
+      stylist.save()
+      expect(stylist.clients()).to(eq([]))
+    end
   end
 
   describe('#update') do
