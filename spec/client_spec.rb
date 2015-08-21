@@ -63,14 +63,15 @@ describe(Client) do
     end
   end
 
-  # describe('#update') do
-  #   it('updates a given instance of the Stylist class') do
-  #     stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
-  #     stylist.save()
-  #     stylist2 = Stylist.new({:id => nil, :name => 'Sam Harris'})
-  #     stylist2.save()
-  #     stylist2.update({:name => "Ira Glass"})
-  #     expect(stylist2.name()).to(eq("Ira Glass"))
-  #   end
-  # end
+  describe('#update') do
+    it('updates a given instance of the Stylist class') do
+      client = Client.new({:id => nil, :name => 'Austin Kincaid', :stylist_id => 1})
+      client.save()
+      client2 = Client.new({:id => nil, :name => 'Sam Harris', :stylist_id => 2})
+      client2.save()
+      client.update({:name => "Ira Glass", :stylist_id => 3})
+      expect(client.name()).to(eq("Ira Glass"))
+      expect(client.stylist_id()).to(eq(3))
+    end
+  end
 end
