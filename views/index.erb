@@ -3,29 +3,48 @@
 <% else %>
  <h3>Here are all your Stylists:</h3>
   <div>
-    <% @stylists.each do |stylist| %>
-      <a href="/lists/<%= stylist.id %>"><%= stylist.name %></a>
-    <% end %>
+    <ul>
+      <% @stylists.each do |stylist| %>
+        <li><a href="/stylists/<%= stylist.id %>"><%= stylist.name %></a></li>
+      <% end %>
+    </ul>
   </div>
+<% end %>
+
+<div>
+  <form action="/" method="post">
+    <label for="stylist_name">Name of new Stylist:</label>
+    <input name="stylist_name" type="text">
   <div>
-    <% @stylists.each do |stylist| %>
-      <a class="btn btn-danger" role="button" href="/lists/<%=stylist.id%>/delete">X</a>
-    <% end %>
+    <button class="btn btn-info" type="submit">Add Stylist</button>
   </div>
+  </form>
+</div>
+
+<% if @stylists.empty? || @clients.empty? %>
+  <h3>You dont have any clients yet.</h3>
+<% else %>
+ <h3>Here are all your Clients:</h3>
   <div>
-    <form action="/tasks" method="post">
-      <label for="name">Name of new client:</label>
-      <input name="name" type="text">
-      <label for="stylist_id">Select a List</label>
-      <select name='stylist_id' type='text'>
-        <% @stylists.each() do |stylist| %>
-          <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
-        <% end %>
-      </select>
-    </form>
+    <ul>
+      <% @clients.each do |client| %>
+        <li><a href="/clients/<%= client.id %>"><%= client.name %></a></li>
+      <% end %>
+    </ul>
   </div>
+<% end %>
+<div>
+  <form action="/" method="post">
+    <label for="client_name">Name of new client:</label>
+    <input name="client_name" type="text">
+    <label for="stylist_id">Select a Stylist</label>
+    <select name='stylist_id' type='text'>
+      <% @stylists.each() do |stylist| %>
+        <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
+      <% end %>
+    </select>
     <div>
-      <button class="btn btn-info" type="submit">Add task</button>
+      <button class="btn btn-info" type="submit">Add Client</button>
     </div>
   </form>
-<% end %>
+</div>

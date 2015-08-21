@@ -13,9 +13,23 @@ get("/") do
   erb(:index)
 end
 
-# post("/") do
-#
-#   @stylists = Stylists.all()
-#   @clients = Clients.all()
-#   erb(:index)
-# end
+post("/") do
+  # stylist_name = params.fetch('stylist_name')
+  # client_name = params.fetch('client_name')
+  # stylist_id = params.fetch('stylist_id')
+
+  if params.fetch('stylist_name', :nil => nil).is_a?(String)
+    stylist_name = params.fetch('stylist_name')
+    new_stylist = Stylist.new({:id => nil, :name => stylist_name})
+    new_stylist.save()
+  elsif params.fetch('client_name', :nil => nil).is_a?(String)
+    client_name = params.fetch('client_name')
+    stylist_id = params.fetch('stylist_id')
+    new_client = Client.new({:id => nil, :name => client_name, :stylist_id => stylist_id})
+    new_client.save()
+  end
+
+  @stylists = Stylist.all()
+  @clients = Client.all()
+  erb(:index)
+end
