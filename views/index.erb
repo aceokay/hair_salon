@@ -1,0 +1,31 @@
+<% if @stylists.empty? %>
+  <h3>You dont have any Stylists yet.</h3>
+<% else %>
+ <h3>Here are all your Stylists:</h3>
+  <div>
+    <% @stylists.each do |stylist| %>
+      <a href="/lists/<%= stylist.id %>"><%= stylist.name %></a>
+    <% end %>
+  </div>
+  <div>
+    <% @stylists.each do |stylist| %>
+      <a class="btn btn-danger" role="button" href="/lists/<%=stylist.id%>/delete">X</a>
+    <% end %>
+  </div>
+  <div>
+    <form action="/tasks" method="post">
+      <label for="name">Name of new client:</label>
+      <input name="name" type="text">
+      <label for="stylist_id">Select a List</label>
+      <select name='stylist_id' type='text'>
+        <% @stylists.each() do |stylist| %>
+          <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
+        <% end %>
+      </select>
+    </form>
+  </div>
+    <div>
+      <button class="btn btn-info" type="submit">Add task</button>
+    </div>
+  </form>
+<% end %>
