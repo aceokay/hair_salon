@@ -16,7 +16,7 @@ describe(Stylist) do
     end
   end
 
-  describe('#all') do
+  describe('.all') do
     it('returns an empty array if no instances have been saved to the database') do
       expect(Stylist.all()).to(eq([]))
     end
@@ -35,6 +35,18 @@ describe(Stylist) do
       stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
       stylist.save()
       expect(Stylist.all()).to(eq([stylist]))
+    end
+  end
+
+  describe('.find') do
+    it('finds an instance of the Stylist class by the id') do
+      stylist = Stylist.new({:id => nil, :name => 'Austin Kincaid'})
+      stylist.save()
+      stylist2 = Stylist.new({:id => nil, :name => 'Sam Harris'})
+      stylist2.save()
+      stylist3 = Stylist.new({:id => nil, :name => 'Joshua Oppenheimer'})
+      stylist3.save()
+      expect(Stylist.find(stylist2.id())).to(eq(stylist2))
     end
   end
 end
