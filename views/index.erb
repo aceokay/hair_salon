@@ -33,18 +33,20 @@
     </ul>
   </div>
 <% end %>
-<div>
-  <form action="/" method="post">
-    <label for="client_name">Name of new client:</label>
-    <input name="client_name" type="text">
-    <label for="stylist_id">Select a Stylist</label>
-    <select name='stylist_id' type='text'>
-      <% @stylists.each() do |stylist| %>
-        <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
-      <% end %>
-    </select>
-    <div>
-      <button class="btn btn-info" type="submit">Add Client</button>
-    </div>
-  </form>
-</div>
+<% unless @stylists.empty? %>
+  <div>
+    <form action="/" method="post">
+      <label for="client_name">Name of new client:</label>
+      <input name="client_name" type="text">
+      <label for="stylist_id">Select a Stylist</label>
+      <select name='stylist_id' type='text'>
+        <% @stylists.each() do |stylist| %>
+          <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
+        <% end %>
+      </select>
+      <div>
+        <button class="btn btn-info" type="submit">Add Client</button>
+      </div>
+    </form>
+  </div>
+<% end %>

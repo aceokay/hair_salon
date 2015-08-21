@@ -1,6 +1,5 @@
 <h3><%= @client.name() %></h3>
 <h4>Stylist: <a href="/stylists/<%= @stylist.id() %>"><%= @stylist.name() %></a></h4>
-
 <h4>Update Client <%= @client.name() %></h4>
 <form action="/clients/<%= @client.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
